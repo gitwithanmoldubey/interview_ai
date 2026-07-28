@@ -7,7 +7,13 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (origin.includes("localhost") || origin.includes("vercel.app") || origin === process.env.FRONTEND_URL) {
+            return callback(null, true);
+        }
+        return callback(null, true);
+    },
     credentials: true
 }))
 

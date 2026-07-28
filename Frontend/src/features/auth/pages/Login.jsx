@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router'
 import "../auth.form.scss"
 import { useAuth } from '../hooks/useAuth'
 import Footer from '../../../components/Footer'
+import Logo from '../../../components/Logo'
 
 const Login = () => {
 
@@ -35,11 +36,7 @@ const Login = () => {
 
                     <div className="auth-header">
                         <div className="auth-logo">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                                <polyline points="2 17 12 22 22 17" />
-                                <polyline points="2 12 12 17 22 12" />
-                            </svg>
+                            <Logo size={28} />
                         </div>
                         <h1>Welcome Back</h1>
                         <p>Log in to access your interview strategies</p>

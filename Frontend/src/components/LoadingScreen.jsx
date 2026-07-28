@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from './Logo'
 import './loadingScreen.scss'
 
 const LoadingScreen = ({ message = "Loading your interview plan..." }) => {
@@ -10,11 +11,7 @@ const LoadingScreen = ({ message = "Loading your interview plan..." }) => {
                 <div className='logo-wrapper'>
                     <div className='pulse-ring'></div>
                     <div className='logo-box'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                            <polyline points="2 17 12 22 22 17" />
-                            <polyline points="2 12 12 17 22 12" />
-                        </svg>
+                        <Logo size={36} />
                     </div>
                 </div>
 

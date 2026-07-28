@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <linearGradient id="logo-spark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Card with Dark Gradient Border -->
+  <rect x="5" y="5" width="90" height="90" rx="24" fill="url(#logo-grad)" opacity="0.15" />
+  <rect x="5" y="5" width="90" height="90" rx="24" stroke="url(#logo-grad)" stroke-width="4" fill="none" />
+
+  <!-- AI Brain / Circuit & Spark Nodes -->
+  <!-- Central AI Sparkle -->
+  <path d="M50 20 C50 35, 65 50, 80 50 C65 50, 50 65, 50 80 C50 65, 35 50, 20 50 C35 50, 50 35, 50 20 Z" fill="url(#logo-grad)" filter="url(#glow)" />
+  
+  <!-- Mini AI accent spark -->
+  <path d="M72 22 C72 29, 79 36, 86 36 C79 36, 72 43, 72 50 C72 43, 65 36, 58 36 C65 36, 72 29, 72 22 Z" fill="url(#logo-spark)" transform="scale(0.5) translate(70, -10)" />
+
+  <!-- Brain / Head outline integration -->
+  <path d="M32 68 C32 60 40 54 50 54 C60 54 68 60 68 68" stroke="url(#logo-spark)" stroke-width="3.5" stroke-linecap="round" fill="none" />
+  <circle cx="50" cy="44" r="5" fill="#38bdf8" />
+</svg>

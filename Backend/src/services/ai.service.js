@@ -191,6 +191,7 @@ CRITICAL DESIGN & LAYOUT REQUIREMENTS (Strict 1-Page LaTeX Style):
    - Bullet points using <ul> and <li> with left margin 16px, compact spacing (margin-bottom: 3px).
    - Tailor bullet point keywords to highlight alignment with the Target Job Description.
 
+   
 Return ONLY valid JSON matching the schema with the generated single-page HTML resume content.`
 
     const response = await generateContentWithFallback({

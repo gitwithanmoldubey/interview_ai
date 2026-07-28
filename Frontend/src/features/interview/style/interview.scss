@@ -1,0 +1,483 @@
+// ── Design Tokens ────────────────────────────────────────────────────────────
+$bg-page:        #0b0f17;
+$bg-card:        rgba(17, 24, 39, 0.75);
+$bg-panel:       rgba(13, 17, 23, 0.65);
+$bg-input:       rgba(13, 17, 23, 0.85);
+$border-color:   rgba(255, 255, 255, 0.1);
+$text-primary:   #f3f4f6;
+$text-muted:     #9ca3af;
+$accent-grad:    linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+$font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// ── Shell ────────────────────────────────────────────────────────────────────
+.interview-page {
+    width: 100%;
+    min-height: calc(100vh - 65px);
+    background: radial-gradient(circle at 50% 10%, rgba(99, 102, 241, 0.12), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1), transparent 50%),
+                $bg-page;
+    color: $text-primary;
+    font-family: $font-stack;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.interview-layout {
+    width: 100%;
+    max-width: 1240px;
+    display: flex;
+    gap: 1.75rem;
+    align-items: flex-start;
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+    }
+}
+
+.interview-divider {
+    display: none;
+}
+
+// ── Left Navigation ──────────────────────────────────────────────────────────
+.interview-nav {
+    width: 260px;
+    flex-shrink: 0;
+    background: $bg-card;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid $border-color;
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 520px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+    @media (max-width: 900px) {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #6b7280;
+        margin-bottom: 0.5rem;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $text-muted;
+        background: transparent;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: left;
+
+        &:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        &--active {
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.25) 100%);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.15);
+
+            .interview-nav__icon {
+                color: #c084fc;
+            }
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        color: #6b7280;
+    }
+
+    .primary-button {
+        width: 100%;
+        margin-top: 1.5rem;
+        padding: 0.85rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #ffffff;
+        background: $accent-grad;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.45);
+        }
+    }
+}
+
+// ── Center Content ────────────────────────────────────────────────────────────
+.interview-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .content-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        &__count {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            background: rgba(168, 85, 247, 0.12);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.25);
+        }
+    }
+
+    .q-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+// ── Question Cards ────────────────────────────────────────────────────────────
+.q-card {
+    background: $bg-card;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid $border-color;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: rgba(168, 85, 247, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem 1.5rem;
+        cursor: pointer;
+
+        .q-card__index {
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .q-card__question {
+            flex: 1;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .q-card__chevron {
+            color: #6b7280;
+            display: flex;
+            transition: transform 0.2s ease;
+
+            &--open {
+                transform: rotate(180deg);
+                color: #c084fc;
+            }
+        }
+    }
+
+    &__body {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: 1.25rem;
+    }
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        p {
+            margin: 0;
+            font-size: 0.925rem;
+            color: #d1d5db;
+            line-height: 1.6;
+            background: rgba(13, 17, 23, 0.6);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    }
+
+    &__tag {
+        font-size: 0.725rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        width: fit-content;
+
+        &--intention {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        &--answer {
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+    }
+}
+
+// ── Roadmap ───────────────────────────────────────────────────────────────────
+.roadmap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.roadmap-day {
+    background: $bg-card;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid $border-color;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .roadmap-day__badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.3rem 0.65rem;
+            border-radius: 8px;
+            background: $accent-grad;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .roadmap-day__focus {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+    }
+
+    &__tasks {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.925rem;
+            color: #d1d5db;
+            padding: 0.75rem 1rem;
+            background: rgba(13, 17, 23, 0.6);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+            .roadmap-day__bullet {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                border: 2px solid #a855f7;
+                flex-shrink: 0;
+            }
+        }
+    }
+}
+
+// ── Right Sidebar ─────────────────────────────────────────────────────────────
+.interview-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
+}
+
+.match-score {
+    background: $bg-card;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid $border-color;
+    border-radius: 20px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+    &__label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #6b7280;
+        margin-bottom: 1.25rem;
+    }
+
+    &__ring {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &.score--high {
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            border: 4px solid #10b981;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
+
+        &.score--mid {
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+            border: 4px solid #f59e0b;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+            color: #f59e0b;
+        }
+
+        &.score--low {
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+            border: 4px solid #ef4444;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+    }
+
+    &__value {
+        font-size: 2.25rem;
+        font-weight: 800;
+    }
+
+    &__pct {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    &__sub {
+        font-size: 0.85rem;
+        color: $text-muted;
+        margin: 0;
+    }
+}
+
+.skill-gaps {
+    background: $bg-card;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid $border-color;
+    border-radius: 20px;
+    padding: 1.5rem;
+
+    &__label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #6b7280;
+        margin-bottom: 1rem;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+
+    .skill-tag {
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+
+        &--high {
+            background: rgba(239, 68, 68, 0.12);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        &--medium {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+        }
+
+        &--low {
+            background: rgba(56, 189, 248, 0.12);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+    }
+}
+
+.sidebar-divider {
+    display: none;
+}

@@ -6,10 +6,21 @@ const app = express()
 
 app.use(express.json())
 app.use(cookieParser())
+const allowedOrigins = [
+    "https://interview-ai-nine-alpha.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
-        if (origin.includes("localhost") || origin.includes("vercel.app") || origin === process.env.FRONTEND_URL) {
+        if (
+            allowedOrigins.includes(origin) ||
+            origin.endsWith(".vercel.app") ||
+            origin.includes("localhost")
+        ) {
             return callback(null, true);
         }
         return callback(null, true);

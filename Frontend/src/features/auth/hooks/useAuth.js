@@ -2,21 +2,24 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../auth.context";
 import { login, register, logout, getMe } from "../services/auth.api";
 
-
-
 export const useAuth = () => {
 
     const context = useContext(AuthContext)
     const { user, setUser, loading, setLoading } = context
 
-
     const handleLogin = async ({ email, password }) => {
         setLoading(true)
         try {
             const data = await login({ email, password })
-            setUser(data.user)
+            if (data?.token) {
+                localStorage.setItem("token", data.token)
+            }
+            if (data?.user) {
+                setUser(data.user)
+            }
+            return data
         } catch (err) {
-
+            throw err
         } finally {
             setLoading(false)
         }
@@ -26,9 +29,15 @@ export const useAuth = () => {
         setLoading(true)
         try {
             const data = await register({ username, email, password })
-            setUser(data.user)
+            if (data?.token) {
+                localStorage.setItem("token", data.token)
+            }
+            if (data?.user) {
+                setUser(data.user)
+            }
+            return data
         } catch (err) {
-
+            throw err
         } finally {
             setLoading(false)
         }
@@ -37,23 +46,28 @@ export const useAuth = () => {
     const handleLogout = async () => {
         setLoading(true)
         try {
-            const data = await logout()
-            setUser(null)
+            await logout()
         } catch (err) {
-
+            console.error("Logout failed:", err)
         } finally {
+            localStorage.removeItem("token")
+            setUser(null)
             setLoading(false)
         }
     }
 
     useEffect(() => {
-
         const getAndSetUser = async () => {
             try {
-
                 const data = await getMe()
-                setUser(data.user)
-            } catch (err) { } finally {
+                if (data?.user) {
+                    setUser(data.user)
+                } else {
+                    setUser(null)
+                }
+            } catch (err) {
+                setUser(null)
+            } finally {
                 setLoading(false)
             }
         }

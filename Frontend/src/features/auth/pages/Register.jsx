@@ -25,7 +25,7 @@ const Register = () => {
             await handleRegister({ username, email, password })
             navigate("/")
         } catch (err) {
-            setError("Registration failed. Please try again.")
+            setError(typeof err === "string" ? err : err.message || "Registration failed. Please try again.")
         }
     }
 

@@ -24,7 +24,7 @@ const Login = () => {
             await handleLogin({ email, password })
             navigate('/')
         } catch (err) {
-            setError("Invalid credentials. Please try again.")
+            setError(typeof err === "string" ? err : err.message || "Invalid credentials. Please try again.")
         }
     }
 
